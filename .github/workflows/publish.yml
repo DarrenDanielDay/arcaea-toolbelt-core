@@ -35,5 +35,5 @@ jobs:
       - name: Publish NPM Package
         uses: JS-DevTools/npm-publish@v2
         with:
-          dry-run: true
+          dry-run: false
           token: ${{ secrets.NPM_TOKEN }}

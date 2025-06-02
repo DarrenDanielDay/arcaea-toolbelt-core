@@ -12,6 +12,8 @@ English | [简体中文](./README.zh-CN.md)
 
 Core library of Arcaea Toolbelt.
 
+Document is coming soon.
+
 ## License
 
 ```text

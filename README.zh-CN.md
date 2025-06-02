@@ -10,7 +10,9 @@
 
 [![Testing](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/test.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![Publish](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/publish.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![npm version](https://badge.fury.io/js/arcaea-toolbelt-core.svg)](https://badge.fury.io/js/arcaea-toolbelt-core)
 
-Core library of Arcaea Toolbelt.
+Arcaea Toolbelt 核心库。
+
+文档先咕了。
 
 ## 许可证
 
