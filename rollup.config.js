@@ -1,16 +1,22 @@
 import pluginTerser from "rollup-plugin-terser";
-import pluginReplace from "@rollup/plugin-replace";
+import pluginResolve from "@rollup/plugin-node-resolve";
+
+function subModule(name) {
+  return {
+    [`${name}.browser.esm.min`]: `./dist/${name}/index.js`,   
+  }
+}
+
 /** @type {import('rollup').RollupOptions} */
 const config = {
   input: {
     "index.browser.esm.min": "./dist/index.js",
   },
-  external: [],
+  external: [
+    "pragmatism/core",
+  ],
   plugins: [
-    pluginReplace({
-      preventAssignment: true,
-      "process.env.NODE_ENV": "'production'",
-    }),
+    pluginResolve(),
   ],
   output: {
     format: "esm",
