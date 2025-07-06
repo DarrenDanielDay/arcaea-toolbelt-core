@@ -11,10 +11,10 @@ function subModule(name) {
 const config = {
   input: {
     "index.browser.esm.min": "./dist/index.js",
+    ...subModule("constants"),
+    ...subModule("formula"),
+    ...subModule("models"),
   },
-  external: [
-    "pragmatism/core",
-  ],
   plugins: [
     pluginResolve(),
   ],
