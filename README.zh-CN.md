@@ -8,7 +8,7 @@
 
 ---
 
-[![Testing](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/test.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![Publish](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/publish.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![npm version](https://badge.fury.io/js/arcaea-toolbelt-core.svg)](https://badge.fury.io/js/arcaea-toolbelt-core)
+[![Testing](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/test.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![Released](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/workflows/publish.yml/badge.svg)](https://github.com/DarrenDanielDay/arcaea-toolbelt-core/actions/) [![npm version](https://badge.fury.io/js/arcaea-toolbelt-core.svg)](https://badge.fury.io/js/arcaea-toolbelt-core)
 
 Arcaea Toolbelt 核心库。
 

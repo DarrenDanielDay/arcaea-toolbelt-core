@@ -1,3 +1,4 @@
+import type { Nullable } from "pragmatism";
 import type { CharacterImageKind, CharacterStatus } from "../constants/enums";
 
 export interface LevelFactor {
@@ -5,10 +6,16 @@ export interface LevelFactor {
   value: number;
 }
 
-export type CharacterKeyFactor = [
-  level1: number,
-  level20: number,
-]
+export type CurvedKeyFactor = [level1: number, level20: number];
+
+export type KeyFactor = [level1: Nullable<number>, level20: Nullable<number>, level30?: Nullable<number>];
+
+export interface KeyFactors {
+  id: number;
+  frag: KeyFactor;
+  step: KeyFactor;
+  over: KeyFactor;
+}
 
 export interface CharacterFactors {
   frag: number;
@@ -29,7 +36,7 @@ export interface CharacterData {
     awake?: boolean;
     lost?: boolean;
   };
-  levels: { [level: number]: CharacterFactors | undefined | null };
+  levels: { [level: number]: Nullable<CharacterFactors> };
 }
 
 export interface CharacterImageQuery {

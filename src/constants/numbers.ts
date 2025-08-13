@@ -11,8 +11,9 @@ export const EX_RATIO = 20_0000;
 export const AA_RATIO = 30_0000;
 
 export const RANKING_SCORE_RATIO = 100;
-//#endregion
 
+export const MAX_NOTE = ~~Math.sqrt(MAX_BASE_SCORE / 2);
+//#endregion
 
 //#region world mode
 export const BASE_PROGRESS = 2.5;

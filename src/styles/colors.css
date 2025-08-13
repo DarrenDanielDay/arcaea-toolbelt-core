@@ -1,0 +1,28 @@
+:root,
+:host {
+  --1: #f8c507;
+  --2: #d1d4e2;
+  --3: #f39b77;
+  --pst: #5cbad3;
+  --pst-light: #6ad6f3;
+  --pst-border-color: #61a8c1;
+  --prs: #b5c76f;
+  --prs-light: #d0e580;
+  --prs-border-color: #a7c276;
+  --ftr: #913a79;
+  --ftr-light: #a7428b;
+  --ftr-border-color: #8f5a7f;
+  --byd: #bf0d25;
+  --byd-light: #dc0f2a;
+  --byd-border-color: #b64356;
+  --etr: #8a7aa5;
+  --etr-light: #a592c6;
+  --etr-border-color: #675781;
+  --pure: #cc22ee;
+  --far: #ffaa11;
+  --lost: #dd4444;
+  --side-light: #376e99;
+  --side-conflict: #8456b3;
+  --side-colorless: #d4c6d4;
+  --side-lephon: #e3ddc6;
+}

@@ -6,7 +6,7 @@ export const ratingClasses = [
   RatingClass.Future,
   RatingClass.Beyond,
   RatingClass.Eternal,
-];
+] as const;
 
 export const difficulties = [
   Difficulty.Past,
@@ -14,4 +14,4 @@ export const difficulties = [
   Difficulty.Future,
   Difficulty.Beyond,
   Difficulty.Eternal,
-];
+] as const;

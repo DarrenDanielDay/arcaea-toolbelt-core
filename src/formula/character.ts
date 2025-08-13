@@ -1,5 +1,5 @@
 import { Fixed, solve } from "pragmatism/core";
-import type { CharacterKeyFactor, LevelFactor } from "../models/character";
+import type { CurvedKeyFactor, LevelFactor } from "../models/character";
 
 const LV_1 = 1;
 const LV_20 = 20;
@@ -17,7 +17,7 @@ const coefficients = (level: number, value: number) => {
 
 export const roundKeyFactor = (value: number) => Fixed.round(value, 1).valueOf();
 
-export const inferKeyFactor = (levelA: LevelFactor, levelB: LevelFactor): CharacterKeyFactor => {
+export const inferKeyFactor = (levelA: LevelFactor, levelB: LevelFactor): CurvedKeyFactor => {
   const [f1, f2] = solve<2>([
     [...coefficients(levelA.level, levelA.value)],
     [...coefficients(levelB.level, levelB.value)],

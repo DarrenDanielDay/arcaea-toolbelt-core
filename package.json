@@ -11,7 +11,7 @@
     "build:browser": "npx rollup --config rollup.config.js",
     "clear:tests": "rimraf -g \"./dist/**/*.spec.*\"",
     "format": "prettier --write .",
-    "start": "tsc -w",
+    "start": "tsc -w --emitDeclarationOnly",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "repository": {
@@ -41,6 +41,12 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./assets": {
+      "types": "./dist/assets/index.d.ts",
+      "browser": "./dist/assets.browser.esm.min.js",
+      "import": "./dist/assets/index.js",
+      "default": "./dist/assets/index.js"
+    },
     "./constants": {
       "types": "./dist/constants/index.d.ts",
       "browser": "./dist/constants.browser.esm.min.js",
@@ -58,7 +64,8 @@
       "browser": "./dist/models.browser.esm.min.js",
       "import": "./dist/models/index.js",
       "default": "./dist/models/index.js"
-    }
+    },
+    "./styles/*": "./src/styles/*"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",

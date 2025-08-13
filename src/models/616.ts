@@ -6,22 +6,22 @@ export namespace $616 {
   export interface Song {
     idx: number;
     id: string;
-    title_localized?: Titlelocalized;
-    artist?: string;
+    title_localized: Titlelocalized;
+    artist: string;
     search_title?: Searchtitle;
     search_artist?: Searchtitle;
-    bpm?: string;
-    bpm_base?: number;
-    set?: string;
-    purchase?: string;
-    audioPreview?: number;
-    audioPreviewEnd?: number;
-    side?: number;
-    bg?: string;
+    bpm: string;
+    bpm_base: number;
+    set: string;
+    purchase: string;
+    audioPreview: number;
+    audioPreviewEnd: number;
+    side: number;
+    bg: string;
     bg_inverse?: string;
-    date?: number;
-    version?: string;
-    difficulties?: Difficulty[];
+    date: number;
+    version: string;
+    difficulties: Difficulty[];
     world_unlock?: boolean;
     remote_dl?: boolean;
     category?: string;
@@ -129,5 +129,51 @@ export namespace $616 {
 
   export interface Namelocalized {
     en: string;
+  }
+
+  export interface CharacterStat {
+    skill_id_text?: Skillidtext;
+    display_name: Skillidtext;
+    profile_image?: string;
+    icon?: string;
+    base_character: boolean;
+    is_uncapped_override?: boolean;
+    is_uncapped: boolean;
+    uncap_cores: UncapCore[];
+    char_type: number;
+    skill_id_uncap: string;
+    skill_requires_uncap: boolean;
+    skill_unlock_level: number;
+    skill_id: string;
+    overdrive: number;
+    prog: number;
+    frag: number;
+    level_exp: number;
+    exp: number;
+    level: number;
+    name: string;
+    character_id: number;
+    base_character_id?: number;
+    skill_id_uncap_text?: Skillidtext;
+    variant?: Skillidtext;
+    voice?: number[];
+    prog_tempest?: number;
+    fatalis_is_limited?: boolean;
+    fatalis_boost_value?: number;
+    skill_state?: string;
+  }
+
+  export interface UncapCore {
+    core_type: string;
+    amount: number;
+    _id: string;
+  }
+
+  export interface Skillidtext {
+    en: string;
+    ja: string;
+    ko: string;
+    "zh-Hans": string;
+    "zh-Hant": string;
   }
 }

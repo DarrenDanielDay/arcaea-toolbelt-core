@@ -10,6 +10,7 @@ import {
   computeRankingLoseScore,
   computeRankingScore,
   Score,
+  computeRankingFactors,
 } from "./music-play";
 
 describe("formula/music-play", () => {
@@ -155,65 +156,74 @@ describe("formula/music-play", () => {
       expect(computePotential({ score: 9980000, constant: 8.0 }).valueOf()).toBe(9.9);
     });
   });
+  describe("computeRankingFactors", () => {
+    it("should return ranking factors", () => {
+      const { note, perfect, score } = computeRankingFactors({ pure: 1000, far: 0, lost: 0, perfect: 990 });
+      expect(note).toBe(1000);
+      expect(perfect).toBe(990);
+      expect(score).toBe(10000990);
+    });
+  });
   describe("computeRankingScore", () => {
     it("should return 0 gain score", () => {
       expect(
         computeRankingScore({
           constant: 7,
           ratingClass: RatingClass.Past,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 1000,
             pure: 1000,
-          },
+          }),
         }),
       ).toBe(0);
       expect(
         computeRankingScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 1000,
             lost: 0,
             perfect: 0,
             pure: 0,
-          },
+          }),
         }),
       ).toBe(0);
       expect(
         computeRankingScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 10,
             perfect: 0,
             pure: 990,
-          },
+          }),
         }),
       ).toBe(0);
     });
     it("should return correct ration relation", () => {
+      const noteResult: NoteResult = {
+        far: 2,
+        lost: 0,
+        perfect: 980,
+        pure: 998,
+      };
       const factor0: RankingFactors = {
         constant: 1,
         ratingClass: RatingClass.Future,
-        noteResult: {
-          far: 2,
-          lost: 0,
-          perfect: 980,
-          pure: 998,
-        },
+        ...computeRankingFactors(noteResult),
       };
-      const factor1 = structuredClone(factor0);
-      factor1.noteResult.far--;
-      factor1.noteResult.pure++;
-      const factor2 = structuredClone(factor0);
-      factor2.noteResult.perfect++;
+      const noteResult1 = structuredClone(noteResult);
+      noteResult1.far--;
+      noteResult1.pure++;
+      const noteResult2 = structuredClone(noteResult);
+      noteResult2.perfect++;
 
       const rs0 = computeRankingScore(factor0);
-      const rs1 = computeRankingScore(factor1);
-      const rs2 = computeRankingScore(factor2);
+      const rs1 = computeRankingScore({ ...factor0, ...computeRankingFactors(noteResult1) });
+      const rs2 = computeRankingScore({ ...factor0, ...computeRankingFactors(noteResult2) });
       expect((rs1 - rs0) / (rs2 - rs0)).toBeCloseTo(14.25, 1);
     });
   });
@@ -225,91 +235,104 @@ describe("formula/music-play", () => {
         perfect: 1000,
         pure: 1000,
       };
-      expect(computeRankingLoseScore({ constant: 7, ratingClass: RatingClass.Past, noteResult })).toBe(0);
-      expect(computeRankingLoseScore({ constant: 7, ratingClass: RatingClass.Present, noteResult })).toBe(0);
+      expect(
+        computeRankingLoseScore({
+          constant: 7,
+          ratingClass: RatingClass.Past,
+          ...computeRankingFactors(noteResult),
+        }),
+      ).toBe(0);
+      expect(
+        computeRankingLoseScore({
+          constant: 7,
+          ratingClass: RatingClass.Present,
+          ...computeRankingFactors(noteResult),
+        }),
+      ).toBe(0);
     });
     it("should return 0 ranking lose score", () => {
       expect(
         computeRankingLoseScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 1000,
             pure: 1000,
-          },
+          }),
         }),
       ).toBe(-0);
       expect(
         computeRankingLoseScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 995,
             pure: 1000,
-          },
+          }),
         }),
       ).toBe(-0);
       expect(
         computeRankingLoseScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 796,
             pure: 800,
-          },
+          }),
         }),
       ).toBe(-0);
       expect(
         computeRankingLoseScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 796,
             pure: 801,
-          },
+          }),
         }),
       ).toBeLessThan(-0);
       expect(
         computeRankingLoseScore({
           constant: 7,
           ratingClass: RatingClass.Future,
-          noteResult: {
+          ...computeRankingFactors({
             far: 0,
             lost: 0,
             perfect: 797,
             pure: 801,
-          },
+          }),
         }),
       ).toBe(-0);
     });
     it("should return correct ratio relation", () => {
+      const noteResult = {
+        far: 2,
+        lost: 0,
+        perfect: 980,
+        pure: 998,
+      };
       const factor0: RankingFactors = {
         constant: 1,
         ratingClass: RatingClass.Future,
-        noteResult: {
-          far: 2,
-          lost: 0,
-          perfect: 980,
-          pure: 998,
-        },
+        ...computeRankingFactors(noteResult),
       };
-      const factor1 = structuredClone(factor0);
-      factor1.noteResult.far--;
-      factor1.noteResult.pure++;
-      const factor2 = structuredClone(factor0);
-      factor2.noteResult.perfect++;
+      const noteResult1 = structuredClone(noteResult);
+      noteResult1.far--;
+      noteResult1.pure++;
+      const noteResult2 = structuredClone(noteResult);
+      noteResult2.perfect++;
 
-      const ls0 = computeRankingLoseScore(factor0);
-      const ls1 = computeRankingLoseScore(factor1);
-      const ls2 = computeRankingLoseScore(factor2);
+      const ls0 = computeRankingScore(factor0);
+      const ls1 = computeRankingScore({ ...factor0, ...computeRankingFactors(noteResult1) });
+      const ls2 = computeRankingScore({ ...factor0, ...computeRankingFactors(noteResult2) });
       expect((ls1 - ls0) / (ls2 - ls0)).toBeCloseTo(14.25, 1);
     });
   });

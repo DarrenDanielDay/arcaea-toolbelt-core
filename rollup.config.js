@@ -11,6 +11,7 @@ function subModule(name) {
 const config = {
   input: {
     "index.browser.esm.min": "./dist/index.js",
+    ...subModule("assets"),
     ...subModule("constants"),
     ...subModule("formula"),
     ...subModule("models"),
@@ -21,6 +22,7 @@ const config = {
   output: {
     format: "esm",
     dir: "dist",
+    sourcemap: true,
     plugins: [pluginTerser.terser()],
   },
 };
