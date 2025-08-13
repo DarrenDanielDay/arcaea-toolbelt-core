@@ -1,6 +1,6 @@
 {
   "name": "arcaea-toolbelt-core",
-  "version": "0.0.0-placeholder",
+  "version": "0.1.0",
   "description": "Core library of Arcaea Toolbelt.",
   "main": "dist/index.js",
   "type": "module",
@@ -84,6 +84,6 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "pragmatism": "^0.0.0-placeholder"
+    "pragmatism": "^0.1.0"
   }
 }
